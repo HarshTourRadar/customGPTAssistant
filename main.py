@@ -2,7 +2,7 @@ import os
 from time import sleep
 
 import openai
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from openai import OpenAI
 from packaging import version
 
@@ -28,6 +28,11 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Create new assistant or load existing
 assistant_id = functions.create_assistant(client)
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 
 # Start conversation thread
